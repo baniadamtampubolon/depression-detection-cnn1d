@@ -35,3 +35,43 @@ Dataset yang digunakan adalah **DAIC-WOZ**, yang berisi sesi wawancara antara av
 ```bash
 git clone https://github.com/baniadamtampubolon/depression-detection-cnn1d.git
 cd depression-detection-cnn1d
+```
+
+2. Buat environment dan install dependensi:
+```bash
+python -m venv venv
+source venv/bin/activate   # atau venv\Scripts\activate untuk Windows
+pip install -r requirements.txt
+```
+
+## 📁 Struktur Direktori
+``` bash
+depression-detection-cnn1d/
+├── data/
+│   ├── raw/              # Dataset mentah (audio asli)
+│   └── features/         # Fitur hasil ekstraksi (MFCC dsb)
+├── models/               # Model yang telah dilatih
+├── notebooks/            # Jupyter Notebook eksplorasi
+├── preprocess.py         # Ekstraksi fitur audio
+├── train.py              # Pelatihan model
+├── predict.py            # Prediksi dari audio baru
+├── config.json           # Konfigurasi pelatihan
+├── requirements.txt      # Daftar dependensi
+└── README.md             # Dokumentasi proyek
+```
+
+## 🛠️ Langkah Praproses
+Jalankan perintah berikut untuk ekstraksi fitur:
+
+```bash
+python preprocess.py --input_dir data/raw --output_dir data/features
+Output akan berupa file .npy atau .h5 berisi MFCC dan fitur lainnya.
+```
+
+## 🎯 Melatih Model
+Gunakan perintah berikut untuk melatih model CNN:
+
+```bash
+python train.py --data_dir data/features --epochs 50 --batch_size 32
+Model hasil pelatihan akan disimpan di folder models/.
+```
